@@ -12,6 +12,9 @@ function App() {
   const [score, setScore] = useState<number>(0);
   function handleClick() {
     setScore((prevScore) => prevScore + 1);
+    if (score === 9) {
+      setStatus("finished");
+    }
     setPosition([
       Math.floor(Math.random() * 100),
       Math.floor(Math.random() * 100),
@@ -33,14 +36,16 @@ function App() {
         <h1>{Math.round((timer / 10) * 100) / 100} segundos</h1>
       </header>
       <section style={{ position: "relative", margin: 48, marginBottom: 48 }}>
-        <figure
-          onClick={handleClick}
-          style={{
-            position: "absolute",
-            top: `${position[0]}%`,
-            left: `${position[1]}%`,
-          }}
-        />
+        {status === "playing" && (
+          <figure
+            onClick={handleClick}
+            style={{
+              position: "absolute",
+              top: `${position[0]}%`,
+              left: `${position[1]}%`,
+            }}
+          />
+        )}
       </section>
       <footer>
         {status === "initial" && (
