@@ -77,7 +77,7 @@ function App() {
   const [redCirclePosition, setRedCirclePosition] = useState<[number, number]>([
     0, 0,
   ]);
-
+  console.log(score);
   function handleStart() {
     setBalls(generateInitialPositions());
     setRedCirclePosition([
@@ -150,6 +150,7 @@ function App() {
                 }}
               />
             ))}
+
           {showRedCircle && (
             <figure
               onClick={handleRedCircleClick}
