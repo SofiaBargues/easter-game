@@ -73,6 +73,12 @@ function App() {
   const [timer, setTimer] = useState<number>(0);
   const [balls, setBalls] = useState<Array<[number, number]>>([]);
   const [score, setScore] = useState<number>(0);
+  const [showRedCircle, setShowRedCircle] = useState<boolean>(false);
+
+  function handleStart() {
+    setTimer(0);
+    setStatus("playing");
+  }
 
   function generateInitialPositions() {
     const initialPositions: Array<[number, number]> = [];
@@ -94,13 +100,24 @@ function App() {
     setScore((prevScore) => {
       const newScore = prevScore + 1;
       if (newScore === 5) {
-        setStatus("finished");
+        setShowRedCircle(true);
       }
       return newScore;
     });
-    const newBalls = balls.filter((_, index) => index !== ballIndex);
-    setBalls(newBalls);
+    if (ballIndex !== 5) {
+      const newBalls = balls.filter((_, index) => index !== ballIndex);
+      setBalls(newBalls);
+    }
   }
+  function handleRedCircleClick() {
+    setShowRedCircle(false);
+    setStatus("initial");
+    setScore(0);
+  }
+
+  useEffect(() => {
+    setBalls(generateInitialPositions());
+  }, [status]);
 
   useEffect(() => {
     let interval: number;
@@ -110,11 +127,6 @@ function App() {
 
     return () => clearInterval(interval);
   }, [status]);
-
-  function handleReset() {
-    setTimer(0);
-    setStatus("initial");
-  }
 
   return (
     <main>
@@ -134,18 +146,25 @@ function App() {
               }}
             />
           ))}
+        {showRedCircle && (
+          <figure
+            onClick={handleRedCircleClick}
+            style={{
+              position: "absolute",
+              top: "50%",
+              left: "50%",
+              background: "red",
+              borderRadius: "50%",
+              width: "50px",
+              height: "50px",
+              cursor: "pointer",
+            }}
+          />
+        )}
       </section>
 
       <footer>
-        {status === "initial" && (
-          <button onClick={() => setStatus("playing")}>Jugar</button>
-        )}
-        {status === "playing" && (
-          <button onClick={() => setStatus("finished")}>Terminar</button>
-        )}
-        {status === "finished" && (
-          <button onClick={handleReset}>Reiniciar</button>
-        )}
+        {status === "initial" && <button onClick={handleStart}>Jugar</button>}
       </footer>
     </main>
   );
