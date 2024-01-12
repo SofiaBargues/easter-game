@@ -76,6 +76,7 @@ function App() {
   const [showRedCircle, setShowRedCircle] = useState<boolean>(false);
 
   function handleStart() {
+    setBalls(generateInitialPositions());
     setTimer(0);
     setStatus("playing");
   }
@@ -91,10 +92,6 @@ function App() {
     }
     return initialPositions;
   }
-
-  useEffect(() => {
-    setBalls(generateInitialPositions());
-  }, [status]);
 
   function handleClick(ballIndex: number) {
     setScore((prevScore) => {
@@ -115,9 +112,7 @@ function App() {
     setScore(0);
   }
 
-  useEffect(() => {
-    setBalls(generateInitialPositions());
-  }, [status]);
+  useEffect(() => {}, [status]);
 
   useEffect(() => {
     let interval: number;
