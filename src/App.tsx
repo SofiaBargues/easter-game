@@ -74,9 +74,16 @@ function App() {
   const [balls, setBalls] = useState<Array<[number, number]>>([]);
   const [score, setScore] = useState<number>(0);
   const [showRedCircle, setShowRedCircle] = useState<boolean>(false);
+  const [redCirclePosition, setRedCirclePosition] = useState<[number, number]>([
+    0, 0,
+  ]);
 
   function handleStart() {
     setBalls(generateInitialPositions());
+    setRedCirclePosition([
+      Math.floor(Math.random() * 100),
+      Math.floor(Math.random() * 100),
+    ]);
     setTimer(0);
     setStatus("playing");
   }
@@ -146,8 +153,8 @@ function App() {
             onClick={handleRedCircleClick}
             style={{
               position: "absolute",
-              top: "50%",
-              left: "50%",
+              top: `${redCirclePosition[0]}%`,
+              left: `${redCirclePosition[1]}%`,
               background: "red",
               borderRadius: "50%",
               width: "50px",
