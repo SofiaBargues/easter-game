@@ -72,12 +72,11 @@ function App() {
   );
   const [timer, setTimer] = useState<number>(0);
   const [balls, setBalls] = useState<Array<[number, number]>>([]);
-  const [score, setScore] = useState<number>(0);
+  const setScore = useState<number>(0);
   const [showRedCircle, setShowRedCircle] = useState<boolean>(false);
   const [redCirclePosition, setRedCirclePosition] = useState<[number, number]>([
     0, 0,
   ]);
-  console.log(score);
   function handleStart() {
     setBalls(generateInitialPositions());
     setRedCirclePosition([
