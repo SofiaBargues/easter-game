@@ -158,7 +158,7 @@ function App() {
                 position: "absolute",
                 top: `${redCirclePosition[0]}%`,
                 left: `${redCirclePosition[1]}%`,
-                background: "red",
+                background: " #ec296a",
                 borderRadius: "50%",
                 width: "50px",
                 height: "50px",
