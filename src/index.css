@@ -36,7 +36,8 @@ main {
   grid-template-rows: 60px 1fr 60px;
 }
 
-header, footer {
+header,
+footer {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -67,7 +68,7 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
-  border-color: #646cff;
+  border-color: #64ffd8;
 }
 button:focus,
 button:focus-visible {

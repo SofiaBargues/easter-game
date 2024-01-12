@@ -132,41 +132,58 @@ function App() {
 
   return (
     <main>
-      <header>
-        <h1>{Math.round((timer / 10) * 100) / 100} segundos</h1>
+      <header style={{ textAlign: "center" }}>
+        <h1> Your time is {Math.round((timer / 10) * 100) / 100} seconds! </h1>
       </header>
-      <section style={{ position: "relative", margin: 48, marginBottom: 48 }}>
-        {status === "playing" &&
-          balls.map((position, index) => (
+
+      {status === "playing" && (
+        <section style={{ position: "relative", margin: 48, marginBottom: 48 }}>
+          {status === "playing" &&
+            balls.map((position, index) => (
+              <figure
+                key={index}
+                onClick={() => handleClick(index)}
+                style={{
+                  position: "absolute",
+                  top: `${position[0]}%`,
+                  left: `${position[1]}%`,
+                }}
+              />
+            ))}
+          {showRedCircle && (
             <figure
-              key={index}
-              onClick={() => handleClick(index)}
+              onClick={handleRedCircleClick}
               style={{
                 position: "absolute",
-                top: `${position[0]}%`,
-                left: `${position[1]}%`,
+                top: `${redCirclePosition[0]}%`,
+                left: `${redCirclePosition[1]}%`,
+                background: "red",
+                borderRadius: "50%",
+                width: "50px",
+                height: "50px",
+                cursor: "pointer",
               }}
             />
-          ))}
-        {showRedCircle && (
-          <figure
-            onClick={handleRedCircleClick}
-            style={{
-              position: "absolute",
-              top: `${redCirclePosition[0]}%`,
-              left: `${redCirclePosition[1]}%`,
-              background: "red",
-              borderRadius: "50%",
-              width: "50px",
-              height: "50px",
-              cursor: "pointer",
-            }}
-          />
-        )}
-      </section>
+          )}
+        </section>
+      )}
 
-      <footer>
-        {status === "initial" && <button onClick={handleStart}>Jugar</button>}
+      <footer
+        style={{
+          display: "flex",
+          flexDirection: "column",
+          gap: "16px",
+          justifyContent: "center",
+        }}
+      >
+        <h1
+          style={{
+            fontSize: "2em",
+          }}
+        >
+          Jacks Game
+        </h1>
+        {status === "initial" && <button onClick={handleStart}>Play</button>}
       </footer>
     </main>
   );
