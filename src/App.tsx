@@ -1,4 +1,47 @@
-import { useEffect, useState } from "react";
+import { MouseEventHandler, useEffect, useState } from "react";
+
+function Egg({
+  position,
+  onClick,
+}: {
+  position: number[];
+  onClick: MouseEventHandler;
+}) {
+  return (
+    <figure
+      onClick={onClick}
+      style={{
+        position: "absolute",
+        top: `${position[0]}%`,
+        left: `${position[1]}%`,
+      }}
+    />
+  );
+}
+
+function Rabbit({
+  position,
+  onClick,
+}: {
+  position: number[];
+  onClick: MouseEventHandler;
+}) {
+  return (
+    <figure
+      onClick={onClick}
+      style={{
+        position: "absolute",
+        top: `${position[0]}%`,
+        left: `${position[1]}%`,
+        background: " #ec296a",
+        borderRadius: "50%",
+        width: "50px",
+        height: "50px",
+        cursor: "pointer",
+      }}
+    />
+  );
+}
 
 function App() {
   const [status, setStatus] = useState<"initial" | "playing" | "finished">(
@@ -74,30 +117,17 @@ function App() {
         <section style={{ position: "relative", margin: 48, marginBottom: 48 }}>
           {status === "playing" &&
             balls.map((position, index) => (
-              <figure
+              <Egg
                 key={index}
                 onClick={() => handleClick(index)}
-                style={{
-                  position: "absolute",
-                  top: `${position[0]}%`,
-                  left: `${position[1]}%`,
-                }}
+                position={position}
               />
             ))}
 
           {showRedCircle && (
-            <figure
+            <Rabbit
               onClick={handleRedCircleClick}
-              style={{
-                position: "absolute",
-                top: `${redCirclePosition[0]}%`,
-                left: `${redCirclePosition[1]}%`,
-                background: " #ec296a",
-                borderRadius: "50%",
-                width: "50px",
-                height: "50px",
-                cursor: "pointer",
-              }}
+              position={redCirclePosition}
             />
           )}
         </section>
