@@ -1,5 +1,23 @@
 import { MouseEventHandler, useEffect, useState } from "react";
 
+// function Egg({
+//   position,
+//   onClick,
+// }: {
+//   position: number[];
+//   onClick: MouseEventHandler;
+// }) {
+//   return (
+//     <figure
+//       onClick={onClick}
+//       style={{
+//         position: "absolute",
+//         top: `${position[0]}%`,
+//         left: `${position[1]}%`,
+//       }}
+//     />
+//   );
+// }
 function Egg({
   position,
   onClick,
@@ -8,14 +26,24 @@ function Egg({
   onClick: MouseEventHandler;
 }) {
   return (
-    <figure
-      onClick={onClick}
+    <div
       style={{
         position: "absolute",
         top: `${position[0]}%`,
         left: `${position[1]}%`,
       }}
-    />
+      onClick={onClick}
+    >
+      <img
+        src="https://www.svgrepo.com/show/264570/easter-egg-easter.svg" // Reemplaza "/ruta/al/archivo.svg" con la ruta real de tu archivo SVG
+        alt="Egg"
+        style={{
+          width: "50px", // Ajusta el tamaño según sea necesario
+          height: "50px", // Ajusta el tamaño según sea necesario
+          cursor: "pointer", // Agrega un cursor para indicar que es interactivo
+        }}
+      />
+    </div>
   );
 }
 
