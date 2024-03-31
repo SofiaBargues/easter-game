@@ -1,23 +1,5 @@
 import { MouseEventHandler, useEffect, useState } from "react";
 
-// function Egg({
-//   position,
-//   onClick,
-// }: {
-//   position: number[];
-//   onClick: MouseEventHandler;
-// }) {
-//   return (
-//     <figure
-//       onClick={onClick}
-//       style={{
-//         position: "absolute",
-//         top: `${position[0]}%`,
-//         left: `${position[1]}%`,
-//       }}
-//     />
-//   );
-// }
 function Egg({
   position,
   onClick,
@@ -35,12 +17,12 @@ function Egg({
       onClick={onClick}
     >
       <img
-        src="https://www.svgrepo.com/show/264570/easter-egg-easter.svg" // Reemplaza "/ruta/al/archivo.svg" con la ruta real de tu archivo SVG
+        src="https://www.svgrepo.com/show/264570/easter-egg-easter.svg"
         alt="Egg"
         style={{
-          width: "50px", // Ajusta el tamaño según sea necesario
-          height: "50px", // Ajusta el tamaño según sea necesario
-          cursor: "pointer", // Agrega un cursor para indicar que es interactivo
+          width: "50px",
+          height: "50px",
+          cursor: "pointer",
         }}
       />
     </div>
@@ -64,12 +46,12 @@ function Rabbit({
       onClick={onClick}
     >
       <img
-        src="https://www.svgrepo.com/show/264578/easter-bunny-rabbit.svg" // Reemplaza "/ruta/al/archivo.svg" con la ruta real de tu archivo SVG
+        src="https://www.svgrepo.com/show/264578/easter-bunny-rabbit.svg"
         alt="Egg"
         style={{
-          width: "50px", // Ajusta el tamaño según sea necesario
-          height: "50px", // Ajusta el tamaño según sea necesario
-          cursor: "pointer", // Agrega un cursor para indicar que es interactivo
+          width: "50px",
+          height: "50px",
+          cursor: "pointer",
         }}
       />
     </div>
@@ -82,11 +64,13 @@ function App() {
   );
   const [timer, setTimer] = useState<number>(0);
   const [balls, setBalls] = useState<Array<[number, number]>>([]);
-  const [_, setScore] = useState<number>(0);
+  const [score, setScore] = useState<number>(0);
   const [showRedCircle, setShowRedCircle] = useState<boolean>(false);
   const [redCirclePosition, setRedCirclePosition] = useState<[number, number]>([
     0, 0,
   ]);
+
+  const [showTime, setShowTime] = useState<boolean>(false); // Nuevo estado para controlar si se muestra el tiempo
 
   function handleStart() {
     setBalls(generateInitialPositions());
@@ -96,6 +80,7 @@ function App() {
     ]);
     setTimer(0);
     setStatus("playing");
+    setShowTime(false); // Ocultar el mensaje de inicio al comenzar el juego
   }
 
   function generateInitialPositions() {
@@ -127,6 +112,7 @@ function App() {
     setShowRedCircle(false);
     setStatus("initial");
     setScore(0);
+    setShowTime(true); // Mostrar el tiempo cuando se termina el juego por primera vez
   }
 
   useEffect(() => {}, [status]);
@@ -143,7 +129,14 @@ function App() {
   return (
     <main>
       <header style={{ textAlign: "center" }}>
-        <h1> Your time is {Math.round((timer / 10) * 100) / 100} seconds! </h1>
+        {showTime ? ( // Mostrar el tiempo si showTime es verdadero
+          <h1>
+            {" "}
+            Your time is {Math.round((timer / 10) * 100) / 100} seconds!{" "}
+          </h1>
+        ) : (
+          <p>Find the Easter bunny by collecting eggs as fast as you can!</p> // Mostrar el mensaje inicial si showTime es falso
+        )}
       </header>
 
       {status === "playing" && (
@@ -168,7 +161,7 @@ function App() {
       <footer
         className="m-10 rounded-3xl"
         style={{
-          background: "rgba(0, 0, 0, 0.5)", // Fondo blanco con 50% de opacidad
+          background: "rgba(0, 0, 0, 0.5)",
           display: "flex",
           flexDirection: "column",
           gap: "16px",
