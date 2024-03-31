@@ -165,23 +165,22 @@ function App() {
           )}
         </section>
       )}
-
       <footer
+        className="m-10 rounded-3xl"
         style={{
+          background: "rgba(0, 0, 0, 0.5)", // Fondo blanco con 50% de opacidad
           display: "flex",
           flexDirection: "column",
           gap: "16px",
           justifyContent: "center",
         }}
       >
-        <h1
-          style={{
-            fontSize: "2em",
-          }}
-        >
-          Jacks Game
-        </h1>
-        {status === "initial" && <button onClick={handleStart}>Play</button>}
+        <h1 className="font-extrabold text-5xl text-amber-300 ">Easter Game</h1>
+        {status === "initial" && (
+          <button className="font-extrabold" onClick={handleStart}>
+            Play
+          </button>
+        )}
       </footer>
     </main>
   );

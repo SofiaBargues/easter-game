@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -12,6 +16,10 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
+
+  background-image: url(https://media.istockphoto.com/id/534851079/photo/easter-egg-hunt.jpg?s=612x612&w=0&k=20&c=DRT_lo2v9E56s3E96mHsmy6AXxXWT4UAFVlfj_AxKPY=);
+  background-size: cover; /* Ajustar el tamaño de la imagen para cubrir todo el fondo */
+  background-position: center; /* Centrar la imagen en el fondo */
 }
 
 * {
@@ -31,7 +39,7 @@ body {
 main {
   display: grid;
   text-align: center;
-  height: 100vh;
+  height: 100vw;
   width: 100vw;
   grid-template-rows: 60px 1fr 60px;
 }
