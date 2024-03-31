@@ -163,7 +163,7 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <h1 className="font-extrabold text-8xl text-yellow-500 ">
+        <h1 className="font-extrabold text-5xl sm:text-8xl text-yellow-500 ">
           Easter Game
         </h1>
         {showTime ? (
@@ -171,15 +171,15 @@ function App() {
             {" "}
             Your time is {Math.round((timer / 10) * 100) / 100} seconds!{" "}
           </h1>
-        ) : (
-          <p className="text-3xl mx-32 text-balance m-10">
+        ) : status !== "playing" ? (
+          <p className="text-xl sm:text-2xl mx-20 text-balance m-10">
             🧺 Collect the five Easter eggs as quickly as you can to find where
             the Easter bunny is hiding!🐰
           </p>
-        )}
+        ) : null}
         {status === "initial" && (
           <button
-            className="font-extrabold text-2xl p-6  m-5"
+            className="font-extrabold text-lg sm:text-2xl m-5"
             onClick={handleStart}
           >
             Play
