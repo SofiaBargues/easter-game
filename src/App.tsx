@@ -127,18 +127,10 @@ function App() {
   }, [status]);
 
   return (
-    <main>
+    <main className="h-screen">
       <header style={{ textAlign: "center" }}>
-        {showTime ? ( // Mostrar el tiempo si showTime es verdadero
-          <h1>
-            {" "}
-            Your time is {Math.round((timer / 10) * 100) / 100} seconds!{" "}
-          </h1>
-        ) : (
-          <p>Find the Easter bunny by collecting eggs as fast as you can!</p> // Mostrar el mensaje inicial si showTime es falso
-        )}
+        <h1> Your time is {Math.round((timer / 10) * 100) / 100} seconds! </h1>
       </header>
-
       {status === "playing" && (
         <section style={{ position: "relative", margin: 48, marginBottom: 48 }}>
           {status === "playing" &&
@@ -169,6 +161,14 @@ function App() {
         }}
       >
         <h1 className="font-extrabold text-5xl text-amber-300 ">Easter Game</h1>
+        {showTime ? ( // Mostrar el tiempo si showTime es verdadero
+          <h1>
+            {" "}
+            Your time is {Math.round((timer / 10) * 100) / 100} seconds!{" "}
+          </h1>
+        ) : (
+          <p>Find the Easter bunny by collecting eggs as fast as you can!</p> // Mostrar el mensaje inicial si showTime es falso
+        )}
         {status === "initial" && (
           <button className="font-extrabold" onClick={handleStart}>
             Play
