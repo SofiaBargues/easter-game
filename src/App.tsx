@@ -55,19 +55,24 @@ function Rabbit({
   onClick: MouseEventHandler;
 }) {
   return (
-    <figure
-      onClick={onClick}
+    <div
       style={{
         position: "absolute",
         top: `${position[0]}%`,
         left: `${position[1]}%`,
-        background: " #ec296a",
-        borderRadius: "50%",
-        width: "50px",
-        height: "50px",
-        cursor: "pointer",
       }}
-    />
+      onClick={onClick}
+    >
+      <img
+        src="https://www.svgrepo.com/show/264578/easter-bunny-rabbit.svg" // Reemplaza "/ruta/al/archivo.svg" con la ruta real de tu archivo SVG
+        alt="Egg"
+        style={{
+          width: "50px", // Ajusta el tamaño según sea necesario
+          height: "50px", // Ajusta el tamaño según sea necesario
+          cursor: "pointer", // Agrega un cursor para indicar que es interactivo
+        }}
+      />
+    </div>
   );
 }
 
