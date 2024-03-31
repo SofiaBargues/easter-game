@@ -127,21 +127,24 @@ function App() {
   }, [status]);
 
   return (
-    <main className="h-screen">
-      <header style={{ textAlign: "center" }}>
-        <h1> Your time is {Math.round((timer / 10) * 100) / 100} seconds! </h1>
+    <main className="h-screen ">
+      <header className="" style={{ textAlign: "center" }}>
+        {status === "playing" && (
+          <h1 className="text-5xl mt-20">
+            {" "}
+            Your time is {Math.round((timer / 10) * 100) / 100} seconds!{" "}
+          </h1>
+        )}
       </header>
       {status === "playing" && (
         <section style={{ position: "relative", margin: 48, marginBottom: 48 }}>
-          {status === "playing" &&
-            balls.map((position, index) => (
-              <Egg
-                key={index}
-                onClick={() => handleClick(index)}
-                position={position}
-              />
-            ))}
-
+          {balls.map((position, index) => (
+            <Egg
+              key={index}
+              onClick={() => handleClick(index)}
+              position={position}
+            />
+          ))}
           {showRedCircle && (
             <Rabbit
               onClick={handleRedCircleClick}
@@ -160,20 +163,36 @@ function App() {
           justifyContent: "center",
         }}
       >
-        <h1 className="font-extrabold text-5xl text-amber-300 ">Easter Game</h1>
-        {showTime ? ( // Mostrar el tiempo si showTime es verdadero
+        <h1 className="font-extrabold text-8xl text-yellow-500 ">
+          Easter Game
+        </h1>
+        {showTime ? (
           <h1>
             {" "}
             Your time is {Math.round((timer / 10) * 100) / 100} seconds!{" "}
           </h1>
         ) : (
-          <p>Find the Easter bunny by collecting eggs as fast as you can!</p> // Mostrar el mensaje inicial si showTime es falso
+          <p className="text-3xl mx-32 text-balance m-10">
+            🧺 Collect the five Easter eggs as quickly as you can to find where
+            the Easter bunny is hiding!🐰
+          </p>
         )}
         {status === "initial" && (
-          <button className="font-extrabold" onClick={handleStart}>
+          <button
+            className="font-extrabold text-2xl p-6  m-5"
+            onClick={handleStart}
+          >
             Play
           </button>
         )}
+        <a
+          href="https://twitter.com/bargues_sofia"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hover:text-yellow-300 text-right"
+        >
+          🌼Sofi
+        </a>
       </footer>
     </main>
   );
